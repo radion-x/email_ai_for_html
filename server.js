@@ -24,6 +24,15 @@ app.use((req, res, next) => {
 // Serve static files from public directory
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Health check endpoint (for Coolify/Docker health checks)
+app.get('/health', (req, res) => {
+    res.status(200).json({ 
+        status: 'ok', 
+        uptime: process.uptime(),
+        timestamp: new Date().toISOString()
+    });
+});
+
 // API Routes
 app.use('/api', emailRoutes);
 app.use('/api', aiRoutes);
@@ -45,10 +54,11 @@ app.use((err, req, res, next) => {
 });
 
 // Start server
-app.listen(PORT, () => {
-    console.log(`🚀 Server running on http://localhost:${PORT}`);
+app.listen(PORT, '0.0.0.0', () => {
+    console.log(`🚀 Server running on http://0.0.0.0:${PORT}`);
     console.log(`📧 Email API: http://localhost:${PORT}/api/send-email`);
     console.log(`🤖 AI Chat API: http://localhost:${PORT}/api/chat`);
+    console.log(`❤️ Health check: http://localhost:${PORT}/health`);
 });
 
 module.exports = app;
