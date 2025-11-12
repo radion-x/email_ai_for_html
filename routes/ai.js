@@ -56,9 +56,15 @@ router.post('/chat', async (req, res) => {
 
         if (useStreaming) {
             // Streaming response
-            res.setHeader('Content-Type', 'text/event-stream');
-            res.setHeader('Cache-Control', 'no-cache');
+            // Proxy-friendly SSE headers (for nginx/Coolify): disable buffering and prevent transforms
+            res.setHeader('Content-Type', 'text/event-stream; charset=utf-8');
+            res.setHeader('Cache-Control', 'no-cache, no-transform');
             res.setHeader('Connection', 'keep-alive');
+            res.setHeader('X-Accel-Buffering', 'no');
+            // Flush headers early so clients can start receiving the stream immediately
+            if (typeof res.flushHeaders === 'function') {
+                res.flushHeaders();
+            }
 
             const response = await axios.post(
                 'https://openrouter.ai/api/v1/chat/completions',
@@ -81,6 +87,16 @@ router.post('/chat', async (req, res) => {
                 }
             );
 
+            // Keep connection alive for intermediaries that may close idle streams
+            const keepAlive = setInterval(() => {
+                try { res.write(':\n\n'); } catch (_) {}
+            }, 15000);
+
+            const cleanup = () => {
+                clearInterval(keepAlive);
+                try { response.data.destroy(); } catch (_) {}
+            };
+
             // Pipe the streaming response to client
             response.data.on('data', (chunk) => {
                 const lines = chunk.toString().split('\n').filter(line => line.trim() !== '');
@@ -97,13 +113,20 @@ router.post('/chat', async (req, res) => {
             });
 
             response.data.on('end', () => {
+                cleanup();
                 res.end();
             });
 
             response.data.on('error', (error) => {
                 console.error('Stream error:', error);
                 res.write(`data: ${JSON.stringify({ error: 'Stream error' })}\n\n`);
+                cleanup();
                 res.end();
+            });
+
+            // Client aborted the request before stream ended
+            req.on('close', () => {
+                cleanup();
             });
 
         } else {
