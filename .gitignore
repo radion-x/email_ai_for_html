@@ -21,3 +21,6 @@ Thumbs.db
 # Temporary files
 tmp/
 temp/
+
+# Node modules (avoid committing dependencies)
+node_modules/
