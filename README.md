@@ -1,126 +1,233 @@
-# A & O Contracting Website
+# 🌐 Reusable Website Template with AI Chat & Email Forms
 
-Professional, modern website for A & O Contracting - Sydney's premier demolition and rubbish removal service.
+A complete, production-ready website template with integrated email forms (via Mailgun) and AI chat widget (via OpenRouter). Perfect for quickly launching new business websites with professional contact capabilities.
 
-## Project Overview
+## ✨ Features
 
-This is a complete, production-ready website built with modern web technologies, optimized for conversions, SEO, and mobile responsiveness.
+- **📧 Email Contact Forms**: Fully functional contact form with Mailgun integration
+- **🤖 AI Chat Widget**: Floating chat widget powered by OpenRouter AI
+- **📱 Fully Responsive**: Works perfectly on desktop, tablet, and mobile
+- **🎨 Modern Design**: Clean, professional UI with smooth animations
+- **⚡ Fast & Lightweight**: Optimized for performance
+- **🔧 Easy to Customize**: Change colors, content, and branding in minutes
+- **🔒 Secure**: Built-in security headers and validation
 
-## Features
-
-- ✅ **Fully Responsive** - Mobile-first design works on all devices
-- ✅ **Modern & Clean** - Professional design with smooth animations
-- ✅ **Conversion Optimized** - Multiple CTAs and clear value propositions
-- ✅ **Fast Loading** - Optimized images and minimal code
-- ✅ **SEO Ready** - Semantic HTML and proper meta tags
-- ✅ **Interactive** - Smooth scroll, carousels, lightbox gallery
-- ✅ **Form Validation** - Client-side validation for contact forms
-- ✅ **Cross-browser Compatible** - Works on all modern browsers
-
-## Technology Stack
-
-- **HTML5** - Semantic markup
-- **CSS3** - Custom properties, Flexbox, Grid
-- **JavaScript (ES6+)** - Modern vanilla JavaScript
-- **jQuery** - DOM manipulation and animations
-- **External Libraries:**
-  - AOS (Animate On Scroll)
-  - Slick Carousel
-  - Lightbox2
-  - Font Awesome 6
-
-## File Structure
+## 📂 Project Structure
 
 ```
-ao-contracting-website/
-│
-├── index.html                 # Homepage
-├── services.html              # Services page (to be created)
-├── portfolio.html             # Portfolio page (to be created)
-├── about.html                 # About page (to be created)
-├── contact.html               # Contact page (to be created)
-├── quote.html                 # Quote request page (to be created)
-│
-├── css/
-│   ├── variables.css          # CSS custom properties
-│   ├── style.css              # Main stylesheet
-│   ├── animations.css         # Animation keyframes
-│   └── responsive.css         # Mobile/tablet responsive styles
-│
-├── js/
-│   ├── main.js                # Core JavaScript functionality
-│   ├── jquery-plugins.js      # jQuery-based enhancements
-│   ├── form-validation.js     # Form handling & validation
-│   ├── scroll-animations.js   # Scroll-triggered animations
-│   └── mobile-menu.js         # Mobile navigation
-│
-├── images/
-│   ├── hero/                  # Hero section backgrounds
-│   ├── services/              # Service category images
-│   ├── portfolio/             # Project gallery photos
-│   ├── team/                  # Team member photos
-│   ├── testimonials/          # Client testimonial photos
-│   └── icons/                 # Custom SVG icons
-│
-├── fonts/                     # Custom web fonts (if needed)
-└── assets/
-    └── favicons/              # Favicon files
+website-template/
+├── public/
+│   ├── index.html          # Main HTML file
+│   ├── css/
+│   │   └── styles.css      # All styling
+│   └── js/
+│       ├── formHandler.js  # Contact form logic
+│       ├── aiChat.js       # AI chat widget logic
+│       └── main.js         # General site functionality
+├── routes/
+│   ├── email.js            # Email sending API endpoint
+│   └── ai.js               # AI chat API endpoint
+├── server.js               # Express server
+├── package.json            # Dependencies
+├── .env.example            # Environment variables template
+└── README.md               # This file
 ```
 
-## Setup Instructions
+## 🚀 Quick Start
 
-1. **Upload Files**
-   - Upload all files to your web server
-   - Ensure directory structure is maintained
+### 1. Clone or Copy This Template
 
-2. **Add Images**
-   - Place your company logo in `/images/logo.png`
-   - Add hero images to `/images/hero/`
-   - Add portfolio photos to `/images/portfolio/`
-   - See `/images/README.md` for image specifications
+```bash
+# Copy this entire folder to your new project
+cp -r website-template my-new-website
+cd my-new-website
+```
 
-3. **Update Contact Information**
-   - Replace `+61XXXXXXXXX` with your actual phone number
-   - Replace `info@aocontracting.com.au` with your email
-   - Update address in footer
+### 2. Install Dependencies
 
-4. **Customize Colors** (Optional)
-   - Edit `/css/variables.css` to change color scheme
-   - Modify brand colors to match your preferences
+```bash
+npm install
+```
 
-5. **Test Everything**
-   - Test on mobile devices
-   - Test all forms
-   - Test navigation links
-   - Check browser compatibility
+### 3. Configure Environment Variables
 
-## Customization Guide
+```bash
+# Copy the example env file
+cp .env.example .env
 
-### Changing Colors
+# Edit .env with your actual credentials
+nano .env  # or use your preferred editor
+```
 
-Edit `/css/variables.css`:
+**Required Configuration:**
+
+- **Mailgun**: Get API key from [mailgun.com](https://www.mailgun.com)
+- **OpenRouter**: Get API key from [openrouter.ai](https://openrouter.ai/keys)
+
+### 4. Customize Your Business Details
+
+Open `.env` and update:
+
+```bash
+RECIPIENT_EMAIL=your-email@example.com
+OPENROUTER_SYSTEM_PROMPT="You are an AI assistant for [Your Business Name]..."
+```
+
+### 5. Run the Server
+
+```bash
+# Development mode (with auto-reload)
+npm run dev
+
+# Production mode
+npm start
+```
+
+Visit: `http://localhost:3000`
+
+## 🎨 Customization Guide
+
+### Update Business Information
+
+Edit `public/index.html`:
+
+1. **Company Name**: Search for "Your Business" and replace
+2. **Services**: Update the service cards in the Services section
+3. **Contact Info**: Change phone, email, address in Contact section
+4. **About Section**: Update the "About Us" content
+
+### Change Colors & Branding
+
+Edit `public/css/styles.css`:
 
 ```css
---primary-color: #1a3a52;      /* Main brand color */
---secondary-color: #ff6b35;    /* Accent color */
---accent-color: #f7931e;       /* Highlight color */
+:root {
+    --primary-color: #2563eb;     /* Main brand color */
+    --secondary-color: #1e40af;   /* Secondary/hover color */
+    /* Change these to match your brand */
+}
 ```
 
-### Adding New Pages
+### Customize AI Chat Prompt
 
-1. Copy the structure from `index.html`
-2. Update the navigation links
-3. Modify content sections as needed
-4. Update the active nav link class
+Edit `.env`:
 
-### Modifying Content
+```bash
+OPENROUTER_SYSTEM_PROMPT="You are a helpful AI assistant for [Your Company]. 
+Answer questions about [your services]. 
+Be professional and friendly. 
+For urgent matters, direct users to call [your phone]."
+```
 
-- **Hero Section**: Edit the `<section class="hero">` in index.html
-- **Services**: Edit the `<section class="services">` section
-- **Portfolio**: Add more portfolio items in the portfolio grid
-- **Testimonials**: Add testimonial cards in the slider
+### Add Your Logo
 
-## Browser Support
+Replace the text logo in `index.html`:
+
+```html
+<!-- Replace this: -->
+<div class="logo">Your Business</div>
+
+<!-- With an image: -->
+<div class="logo">
+    <img src="images/logo.png" alt="Your Business" height="40">
+</div>
+```
+
+### Modify Form Fields
+
+Edit the contact form in `index.html` to add/remove fields:
+
+```html
+<div class="form-group">
+    <label for="newfield">New Field *</label>
+    <input type="text" id="newfield" name="newfield" required>
+</div>
+```
+
+## 📧 Email Configuration
+
+### Mailgun Setup
+
+1. Sign up at [mailgun.com](https://www.mailgun.com)
+2. Add and verify your domain
+3. Get your API key from Account Settings
+4. Update `.env` with your credentials
+
+### Email Templates
+
+Customize the email templates in `routes/email.js`:
+
+- **Admin notification**: Email sent to you
+- **Auto-reply**: Email sent to customer
+
+## 🤖 AI Chat Configuration
+
+### OpenRouter Setup
+
+1. Sign up at [openrouter.ai](https://openrouter.ai)
+2. Get your API key from [openrouter.ai/keys](https://openrouter.ai/keys)
+3. Choose a model (see [openrouter.ai/models](https://openrouter.ai/models))
+
+### Available Models
+
+**Free Options** (great for testing):
+- `tngtech/deepseek-r1t2-chimera:free`
+- `google/gemini-flash-1.5:free`
+
+**Paid Options** (better quality):
+- `openai/gpt-4o` - Best overall
+- `openai/gpt-3.5-turbo` - Fast and cheap
+- `anthropic/claude-3.5-sonnet` - Excellent quality
+
+### Chat Customization
+
+Edit `public/js/aiChat.js` to:
+- Change welcome message
+- Modify chat appearance
+- Add quick reply buttons
+- Customize behavior
+
+## 🌐 Deployment
+
+### Deploy to Heroku
+
+```bash
+# Install Heroku CLI, then:
+heroku create your-app-name
+heroku config:set MAILGUN_API_KEY=your-key
+heroku config:set OPENROUTER_API_KEY=your-key
+heroku config:set RECIPIENT_EMAIL=your-email
+# ... set other env vars
+git push heroku main
+```
+
+### Deploy to Vercel
+
+```bash
+# Install Vercel CLI, then:
+vercel
+# Follow prompts and add environment variables in dashboard
+```
+
+### Deploy to DigitalOcean/VPS
+
+```bash
+# SSH into your server
+git clone your-repo
+cd your-repo
+npm install
+pm2 start server.js --name "my-website"
+```
+
+## 🔒 Security Best Practices
+
+1. **Never commit `.env`** - It's in `.gitignore` by default
+2. **Use environment variables** for all sensitive data
+3. **Enable rate limiting** in production (add express-rate-limit)
+4. **Use HTTPS** in production
+5. **Validate all inputs** on both client and server
+
+## 📱 Browser Support
 
 - Chrome (latest)
 - Firefox (latest)
@@ -128,89 +235,57 @@ Edit `/css/variables.css`:
 - Edge (latest)
 - Mobile browsers (iOS Safari, Chrome Mobile)
 
-## Performance Optimization
+## 🐛 Troubleshooting
 
-The website is optimized for fast loading:
+### Email not sending?
 
-1. **Minify** CSS and JavaScript for production
-2. **Compress images** before uploading
-3. **Enable gzip** compression on server
-4. **Use CDN** for external libraries
-5. **Lazy load** images below the fold
+- Check Mailgun API key and domain in `.env`
+- Verify your domain in Mailgun dashboard
+- Check server logs for errors
 
-## SEO Checklist
+### AI chat not working?
 
-- ✅ Meta descriptions on all pages
-- ✅ Proper heading hierarchy (H1-H6)
-- ✅ Alt text on all images
-- ✅ Semantic HTML markup
-- ✅ Mobile-friendly design
-- ✅ Fast page load speed
-- ✅ Open Graph tags for social sharing
-- ✅ Sitemap.xml (to be created)
-- ✅ Robots.txt (to be created)
+- Verify OpenRouter API key in `.env`
+- Check if you have credits (for paid models)
+- Try a free model first
+- Check browser console for errors
 
-## Maintenance
+### Server won't start?
 
-### Regular Updates
+```bash
+# Check if port 3000 is in use
+lsof -ti:3000 | xargs kill -9
 
-1. **Update portfolio** with new project photos
-2. **Add new testimonials** from satisfied clients
-3. **Keep contact information** current
-4. **Monitor and fix** any broken links
-5. **Update service offerings** as needed
+# Or use a different port
+PORT=3001 npm start
+```
 
-### Security
+## 📝 License
 
-1. **Use HTTPS** (SSL certificate required)
-2. **Keep libraries updated** to latest versions
-3. **Sanitize form inputs** on server-side
-4. **Implement CAPTCHA** to prevent spam
-5. **Regular backups** of website files
+MIT License - feel free to use for personal or commercial projects
 
-## Next Steps
+## 🤝 Support
 
-1. **Create remaining pages**:
-   - services.html
-   - portfolio.html
-   - about.html
-   - contact.html
-   - quote.html
+For issues or questions:
+1. Check the troubleshooting section above
+2. Review the code comments
+3. Check Mailgun and OpenRouter documentation
 
-2. **Add actual images** to replace placeholders
+## 🎯 Next Steps
 
-3. **Set up contact form backend**:
-   - PHP mail script, or
-   - Email service API (SendGrid, Mailgun), or
-   - Form service (Formspree, Netlify Forms)
+After setup:
 
-4. **Set up analytics**:
-   - Google Analytics
-   - Google Search Console
-   - Facebook Pixel (if using ads)
+1. ✅ Test the contact form
+2. ✅ Test the AI chat
+3. ✅ Customize colors and branding
+4. ✅ Update all business information
+5. ✅ Add your logo and images
+6. ✅ Test on mobile devices
+7. ✅ Deploy to production
+8. ✅ Set up analytics (Google Analytics, etc.)
 
-5. **Launch checklist**:
-   - Test all functionality
-   - Proofread all content
-   - Check mobile responsiveness
-   - Set up 301 redirects (if applicable)
-   - Submit sitemap to search engines
+---
 
-## Support & Documentation
+**Built with ❤️ for rapid website development**
 
-For questions or issues:
-1. Check the code comments in each file
-2. Review the original design instructions document
-3. Test in browser developer tools
-4. Validate HTML/CSS with W3C validators
-
-## License
-
-© 2025 A & O Contracting. All rights reserved.
-
-## Credits
-
-- **Design & Development**: Based on comprehensive design specifications
-- **Icons**: Font Awesome 6
-- **Fonts**: Google Fonts (Poppins, Open Sans, Lato)
-- **Libraries**: jQuery, AOS, Slick Carousel, Lightbox2
+Start building your next website in minutes, not days!
